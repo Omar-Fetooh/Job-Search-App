@@ -3,6 +3,8 @@ import './database/db.Connection.js'
 
 import { AppError } from './src/utils/error.js'
 import userRouter from './src/modules/user/user.routes.js'
+import companyRouter from './src/modules/company/company.routes.js'
+import jobRouter from './src/modules/jobs/jobs.routes.js'
 const app = express()
 const port = 3000
 
@@ -13,7 +15,8 @@ process.on('uncaughtException', (err) => {
 app.use(express.json())
 
 app.use('/users', userRouter)
-
+app.use('/companies', companyRouter)
+app.use('/jobs', jobRouter)
 
 app.use('*', (req, res, next) => {
     next(new AppError(`${req.originalUrl}  Not found`, 404))

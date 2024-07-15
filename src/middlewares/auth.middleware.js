@@ -10,6 +10,8 @@ export const auth = (role) => (req, res, next) => {
         if (err) throw new AppError('Invalid Token', 498)
 
         // Authorization
+        // console.log(decoded.role)
+        // console.log(role)
         if (decoded.role !== role) throw new AppError('Not Enough Priviliges', 403);
 
         req.user = decoded;
