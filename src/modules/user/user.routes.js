@@ -1,5 +1,7 @@
 import { Router } from "express";
-import { deleteAccount, updateAccount } from "./user.controllers.js";
+import { deleteAccount, getUserAccountData, updateAccount } from "./user.controllers.js";
+import userMiddleware from "./user.middleware.js";
+import { auth } from "../../middlewares/auth.middleware.js";
 
 const userRouter = Router();
 
@@ -8,9 +10,13 @@ userRouter.post('/signin', signin)
 
 userRouter
     .route('/account')
-    .put(auth('user'), updateAccount)
-    .delete(auth('user'), deleteAccount)
+    .get(auth('user'), getProfileData)  // Usesr Id will be Passed in query
 
 
+userRouter.route('/:userId')
+    .put(auth('user'), userMiddleware, updateAccount)
+    .delete(auth('user'), userMiddleware, deleteAccount)
+    .get(auth('user'), userMiddleware, getUserAccountData)
+userRouter
 
 export default userRouter

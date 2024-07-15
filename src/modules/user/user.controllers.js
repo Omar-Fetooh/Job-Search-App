@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+
 import { AppError, catchAsyncError } from '../../utils/error.js'
 import User from '../../../database/models/user.model.js'
 
@@ -12,13 +13,13 @@ export const signup = catchAsyncError(async (req, res) => {
     const hashedPassword = bcrypt.hashSync(password, 8);
 
     const username = firstName + lastName;
+
     const data = await User.create(
         {
             email, firstName, lastName, username, recoveryEmail, DOB, mobileNumber, role, status,
             password: hashedPassword
         }
     )
-
     res.status(201).json({ message: "User Created Successfully", data })
 })
 
@@ -43,6 +44,7 @@ export const signin = catchAsyncError(async (req, res) => {
 })
 
 export const updateAccount = catchAsyncError(async (req, res) => {
+
     const { email, mobileNumber, recoveryEmail, DOB, lastName, firstName } = req.body;
     const userId = req.user.id;
 
@@ -59,5 +61,36 @@ export const updateAccount = catchAsyncError(async (req, res) => {
 })
 
 export const deleteAccount = catchAsyncError(async (req, res) => {
-    const userId = req.user.id;
+    const { userId } = req.params;
+    await User.findByIdAndDelete({ userId })
+    res.json({ message: "Account Deleted Successfully" })
+})
+
+export const getUserAccountData = catchAsyncError(async (req, res) => {
+    const { userId } = req.params;
+    const data = await User.findById({ userId });
+    res.json({ data })
+})
+
+export const getProfileData = catchAsyncError(async (req, res) => {
+    const { userId } = req.query;
+    const allData = await User.findById(userId);
+    const { username, email, DOB, mobileNumber, role, status } = allData  // We need only profile data 
+
+    res.json({ message: username, email, DOB, mobileNumber, role, status })
+
+})
+export const updatePassword = catchAsyncError(async (req, res) => {
+
+
+})
+
+export const forgetPassword = catchAsyncError(async (req, res) => {
+
+
+})
+
+export const getAllAccsOfRecovEmail = catchAsyncError(async (req, res) => {
+
+
 })
