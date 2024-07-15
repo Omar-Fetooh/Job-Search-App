@@ -106,10 +106,12 @@ export const requestResetPassword = catchAsyncError(async (req, res) => {
     user.passwordResetExpires = otpExpires;
     await user.save();
 
-    await transporter.sendMail({
-        email: user.email,
+
+    const token = jwt.sign({ email }, 'secret2')
+    transporter.sendMail({
+        to: user.email,
         subject: 'Password Reset OTP',
-        message: `Your OTP for password reset is ${otp}`
+        html: `<a href='http://localhost:3000/auth/verify/${token}'>Your OTP = ${otp}</a>`
     });
 
     res.json({ message: "OTP sent to email" });
@@ -123,10 +125,16 @@ export const resetPassword = catchAsyncError(async (req, res) => {
         return next(new AppError("User not found", 404));
     }
 
-    if (user.passwordResetOtp !== otp || user.passwordResetExpires < Date.now())
+    if (user.passwordResetOtp !== otp || user.passwordResetExpires < Date.now()) {
+        console.log(user.passwordResetOtp)
+        console.log(otp)
+        console.log(user.passwordResetExpires)
+        console.log(Date.now())
         throw new AppError("Invalid or Expired OTP", 400)
+    }
 
     user.password = bcrypt.hashSync(newPassword, 8);
+    console.log("Im here")
     user.passwordResetOtp = undefined
     user.passwordResetExpires = undefined
     await user.save();
