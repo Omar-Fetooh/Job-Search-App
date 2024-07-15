@@ -44,18 +44,15 @@ const userSchema = mongoose.Schema({
         type: String,
         enum: ['online', 'offline'],
         default: 'offline'
-    }
+    },
+    passwordResetOtp: String,
+    passwordResetExpires: Date
 },
     {
         versionKey: false,
         timestamps: true
     }
 )
-
-userSchema.pre('save', (next) => {
-    this.username = this.firstName + this.lastName
-    next();
-})
 
 const User = mongoose.model('user', userSchema)
 

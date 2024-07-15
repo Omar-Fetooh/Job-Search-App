@@ -1,4 +1,6 @@
 import express from 'express'
+import './database/db.Connection.js'
+
 import { AppError } from './src/utils/error.js'
 import userRouter from './src/modules/user/user.routes.js'
 const app = express()

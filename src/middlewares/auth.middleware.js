@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { AppError } from '../utils/error';
+import { AppError } from '../utils/error.js';
 
 export const auth = (role) => (req, res, next) => {
     // Authentication
