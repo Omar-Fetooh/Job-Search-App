@@ -10,7 +10,8 @@ import {
 import userMiddleware from "./user.middleware.js";
 import { auth } from "../../middlewares/auth.middleware.js";
 import upload from "../../utils/upload.js";
-import validate from '../../middlewares/validate.middleware.js'
+import { validate } from '../../middlewares/validate.middleware.js'
+
 import {
     resetPasswordSchema,
     signinSchema,

@@ -10,7 +10,7 @@ import {
 } from './company.controllers.js';
 import { companyMiddleware } from './company.middleware.js';
 import { checkJobOwner } from '../jobs/job.middlewares.js';
-import { validate } from 'uuid';
+import { validate } from '../../middlewares/validate.middleware.js';
 import { addCompanySchema } from './company.validations.js';
 
 const companyRouter = Router();

@@ -11,7 +11,7 @@ import {
     updateJob
 } from './jobs.controllers.js';
 import { checkJobOwner } from './job.middlewares.js';
-import { validate } from 'uuid';
+import { validate } from '../../middlewares/validate.middleware.js';
 import { addJobSchema, applyToJobSchema } from './jobs.validations.js';
 
 

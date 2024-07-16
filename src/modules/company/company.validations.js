@@ -6,7 +6,7 @@ export const addCompanySchema = Joi.object({
     industry: Joi.string().required(),
     address: Joi.string().required(),
     numberOfEmployess: Joi.array().items(Joi.number()),
-    companyEmail: Joi.email().required(),
+    companyEmail: Joi.string().email().required(),
     companyHR: Joi.string()
 })
 
