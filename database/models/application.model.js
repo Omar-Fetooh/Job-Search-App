@@ -2,11 +2,13 @@ import mongoose from 'mongoose'
 
 const applicationSchema = mongoose.Schema({
     jobId: {
-        type: Number,
+        type: mongoose.Types.ObjectId,
+        ref: 'job',
         required: true
     },
     userId: {
         type: mongoose.Types.ObjectId,
+        ref: 'user',
         required: true
     },
 
@@ -19,8 +21,7 @@ const applicationSchema = mongoose.Schema({
         required: true
     },
     userResume: {
-        type: String,
-        required: true
+        type: String
     }
 },
     {

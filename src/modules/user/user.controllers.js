@@ -149,3 +149,5 @@ export const getAllAccsOfRecovEmail = catchAsyncError(async (req, res) => {
     const allAccounts = await User.find({ recoveryEmail: recoveryEmail });
     res.json({ message: allAccounts })
 })
+
+

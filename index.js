@@ -13,6 +13,7 @@ process.on('uncaughtException', (err) => {
 })
 
 app.use(express.json())
+app.use(express.static('uploads'))
 
 app.use('/users', userRouter)
 app.use('/companies', companyRouter)

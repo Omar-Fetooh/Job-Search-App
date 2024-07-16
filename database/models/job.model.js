@@ -39,7 +39,7 @@ const jobSchema = mongoose.Schema({
     }
 },
     {
-        versoinKey: false,
+        versionkey: false,
         timestamp: true
     })
 

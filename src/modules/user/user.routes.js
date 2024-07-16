@@ -3,11 +3,12 @@ import {
     deleteAccount, getAllAccsOfRecovEmail, getProfileData, getUserAccountData,
     requestResetPassword, resetPassword,
     signin, signup, updateAccount,
-    updatePassword
+    updatePassword,
 } from "./user.controllers.js";
 
 import userMiddleware from "./user.middleware.js";
 import { auth } from "../../middlewares/auth.middleware.js";
+import upload from "../../utils/upload.js";
 
 const userRouter = Router();
 
