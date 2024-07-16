@@ -1,4 +1,4 @@
-# Job-Search-App
+# Job-Search-API
 A platform connecting job seekers with employers. Users can search, apply to jobs, and manage profiles securely. HR personnel can post jobs, manage listings, and review applications.
 
 **Features of Job Search App:**
