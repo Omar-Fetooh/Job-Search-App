@@ -11,22 +11,24 @@ import {
     updateJob
 } from './jobs.controllers.js';
 import { checkJobOwner } from './job.middlewares.js';
+import { validate } from 'uuid';
+import { addJobSchema, applyToJobSchema, updateJobSchema } from './jobs.validations.js';
 
 
 const jobRouter = Router();
 
 jobRouter.route('/')
-    .post(auth('Company_HR'), addJob)
+    .post(auth('Company_HR'), validate(addJobSchema), addJob)
     .get(auth(['User', 'Company_HR']), getAllJobs)
 
 
 
 jobRouter.route('/:jobId')
-    .put(auth('Company_HR'), checkJobOwner, updateJob)
+    .put(auth('Company_HR'), checkJobOwner, validate(updateJobSchema), updateJob)
     .delete(auth('Company_HR'), checkJobOwner, deleteJob)
 
 jobRouter.get('/specificCompany', auth(['User', 'Company_HR']), getSpecificCompany)
 jobRouter.get('/filterJobs', auth(['User', 'Company_HR']), filterJobs)
 
-jobRouter.post('/apply', auth(['User']), applyToJob)
+jobRouter.post('/apply', auth(['User']), validate(applyToJobSchema), applyToJob)
 export default jobRouter;   

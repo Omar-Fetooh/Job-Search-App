@@ -3,7 +3,7 @@ import Joi from 'joi'
 export const signupSchema = Joi.object({
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
-    email: Joi.string().required(),
+    email: Joi.email().required(),
     password: Joi.string().required(),
     recoveryEmail: Joi.string().required(),
     DOB: Joi.date().required(),
@@ -12,12 +12,12 @@ export const signupSchema = Joi.object({
 })
 
 export const signinSchema = Joi.object({
-    email: Joi.string().required(),
+    email: Joi.email().required(),
     password: Joi.string().required()
 })
 
 export const updateAccountSchema = Joi.object({
-    email: Joi.string(),
+    email: Joi.email(),
     mobileNumber: Joi.string(),
     recoveryEmail: Joi.string(),
     DOB: Joi.date(),
@@ -26,16 +26,16 @@ export const updateAccountSchema = Joi.object({
 })
 
 export const requestResetPasswordSchema = Joi.object({
-    email: Joi.string().required()
+    email: Joi.email().required()
 })
 
 export const resetPasswordSchema = Joi.object({
-    email: Joi.string().required(),
+    email: Joi.email().required(),
     otp: Joi.string().required(),
     newPassword: Joi.string().required()
 })
 
 export const updatePasswordSchmea = Joi.object({
-    email: Joi.string().required(),
+    email: Joi.email().required(),
     password: Joi.string().required()
 })
