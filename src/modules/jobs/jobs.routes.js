@@ -12,7 +12,7 @@ import {
 } from './jobs.controllers.js';
 import { checkJobOwner } from './job.middlewares.js';
 import { validate } from 'uuid';
-import { addJobSchema, applyToJobSchema, updateJobSchema } from './jobs.validations.js';
+import { addJobSchema, applyToJobSchema } from './jobs.validations.js';
 
 
 const jobRouter = Router();
@@ -24,7 +24,7 @@ jobRouter.route('/')
 
 
 jobRouter.route('/:jobId')
-    .put(auth('Company_HR'), checkJobOwner, validate(updateJobSchema), updateJob)
+    .put(auth('Company_HR'), checkJobOwner, validate(addJobSchema), updateJob)
     .delete(auth('Company_HR'), checkJobOwner, deleteJob)
 
 jobRouter.get('/specificCompany', auth(['User', 'Company_HR']), getSpecificCompany)

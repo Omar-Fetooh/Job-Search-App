@@ -1,8 +1,11 @@
 import mongoose from "mongoose";
+
 import Company from "../../../database/models/company.model.js";
 import { AppError, catchAsyncError } from "../../utils/error.js";
 import Job from "../../../database/models/job.model.js";
 import Application from '../../../database/models/application.model.js'
+
+
 export const addCompany = catchAsyncError(async (req, res, next) => {
     const data = await Company.create(req.body);
     res.status(201).json({ message: "Company Added Successfully", data })
