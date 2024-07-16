@@ -5,8 +5,9 @@ export const addJobSchema = Joi.object({
     jobLocation: Joi.string().required(),
     workingTime: Joi.string().required(),
     seniorityLevel: Joi.string().required(),
-    technicalSkills: Joi.string().required(),
-    softSkills: Joi.string().required(),
+    jobDescription: Joi.string().required(),
+    technicalSkills: Joi.array().items(Joi.string()).required(),
+    softSkills: Joi.array().items(Joi.string()).required(),
     addedBy: Joi.string().required()
 })
 

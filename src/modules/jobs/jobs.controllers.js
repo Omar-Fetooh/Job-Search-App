@@ -60,7 +60,6 @@ export const filterJobs = catchAsyncError(async (req, res) => {
     if (jobTitle) filter.jobTitle = jobTitle;
     if (technicalSkills) filter.technicalSkills = { $in: technicalSkills.split(',') };
 
-    console.log(filter)
     const filteredJobs = await Job.find(filter)
     res.json({ message: filteredJobs })
 

@@ -50,7 +50,7 @@ export const SearchCompanyByName = catchAsyncError(async (req, res) => {
 export const getAllApplications = catchAsyncError(async (req, res) => {
 
     const applications = await Application.find({ jobId: req.params.jobId })
-        .populate('userId', '-firstName -lastName -password -recoveryEmail -DOB -createdAt -updatedAt ');
+        .populate('userId', '-firstName -lastName -password -recoveryEmail -DOB -createdAt -updatedAt -passwordResetExpires -passwordResetOtp');
 
 
     res.json({ message: applications })

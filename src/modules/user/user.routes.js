@@ -36,7 +36,7 @@ userRouter.route('/:userId')
     .get(auth('User'), userMiddleware, getUserAccountData)
 
 
-userRouter.put('/account/:userId', auth('User'), userMiddleware, updatePassword)
+userRouter.put('/account/:userId', auth(['User', 'Company_HR']), userMiddleware, updatePassword)
 
 userRouter.post('/requestResetPassword', validate(updatePasswordSchmea), requestResetPassword)
 userRouter.post('/resetPassword', validate(resetPasswordSchema), resetPassword)
