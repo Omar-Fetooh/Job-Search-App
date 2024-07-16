@@ -1,5 +1,5 @@
 # Job-Search-App
-This particular app describes searching for a job that is relevant to their domain or area of interest. Different components can be created underneath index.js which serves as the root file. These components have program code for API calls, posting details of job search, error messages in case of wrong entry.
+A platform connecting job seekers with employers. Users can search, apply to jobs, and manage profiles securely. HR personnel can post jobs, manage listings, and review applications.
 
 **Features of Job Search App:**
 
